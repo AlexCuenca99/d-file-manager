@@ -1,0 +1,42 @@
+name: Django Tests
+
+on:
+    push:
+        branches:
+            - main
+
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+            - name: Set up Python 3.9.6
+              uses: actions/setup-python@v3
+              with:
+                  python-version: 3.9
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+            - name: Run tests
+              env:
+                  DJANGO_DEBUG: ${{ secrets.DJANGO_DEBUG }}
+                  DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+
+                  DJANGO_EMAIL_BACKEND: ${{ secrets.DJANGO_EMAIL_BACKEND }}
+                  DJANGO_EMAIL_HOST: ${{ secrets.DJANGO_EMAIL_HOST }}
+                  DJANGO_EMAIL_PORT: ${{ secrets.DJANGO_EMAIL_PORT }}
+                  DJANGO_EMAIL_USE_TLS: ${{ secrets.DJANGO_EMAIL_USE_TLS }}
+
+                  DJANGO_EMAIL_HOST_USER: ${{ secrets.DJANGO_EMAIL_HOST_USER }}
+                  DJANGO_EMAIL_HOST_PASSWORD: ${{ secrets.DJANGO_EMAIL_HOST_PASSWORD }}
+
+                  DJANGO_DEV_STAGE: ${{ secrets.DJANGO_DEV_STAGE }}
+              run: |
+                  echo "$DJANGO_DEV_STAGE"
+                  python manage.py test
