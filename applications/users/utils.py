@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-from django.conf import settings
 
 
 def set_age(birth: datetime) -> int:

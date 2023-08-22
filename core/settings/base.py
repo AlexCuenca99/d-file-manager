@@ -24,7 +24,10 @@ DJANGO_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
 )
-LOCAL_APPS = ("applications.users",)
+LOCAL_APPS = (
+    "applications.users",
+    "applications.files",
+)
 THIRD_PARTY_APPS = (
     "corsheaders",
     "rest_framework",
