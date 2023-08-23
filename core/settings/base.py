@@ -140,3 +140,6 @@ DJOSER = {
         "current_user": USER_SERIALIZER,
     },
 }
+
+# X-Frame
+X_FRAME_OPTIONS = "SAMEORIGIN"
