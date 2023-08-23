@@ -1,3 +1,4 @@
+import os
 import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -17,6 +18,9 @@ class File(TimeStampedModel):
     class Meta:
         verbose_name = "File"
         verbose_name_plural = "Files"
+
+    def get_file_name(self):
+        return os.path.basename(self.file.name)
 
     def __str__(self) -> str:
         return self.file.name
