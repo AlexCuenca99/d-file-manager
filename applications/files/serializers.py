@@ -9,6 +9,7 @@ class FileModelSerializer(serializers.ModelSerializer):
     """
 
     file_name = serializers.CharField(read_only=True, source="get_file_name")
+    file_extension = serializers.CharField(read_only=True, source="get_file_extension")
 
     class Meta:
         model = File

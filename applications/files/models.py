@@ -22,5 +22,8 @@ class File(TimeStampedModel):
     def get_file_name(self):
         return os.path.basename(self.file.name)
 
+    def get_file_extension(self):
+        return self.get_file_name().split(".")[-1]
+
     def __str__(self) -> str:
         return self.file.name
