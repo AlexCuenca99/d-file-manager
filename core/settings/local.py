@@ -2,6 +2,8 @@ from .base import *
 
 from datetime import timedelta
 
+from corsheaders.defaults import default_headers
+
 
 DEBUG = env("DEBUG")
 
@@ -67,12 +69,24 @@ DOMAIN = "localhost:3000"
 SITE_NAME = "D-FileManager"
 
 
+# X-Frame
+X_FRAME_OPTIONS = "ALLOWALL"
+XS_SHARING_ALLOWED_METHODS = ["POST", "GET", "OPTIONS", "PUT", "DELETE"]
+
+
 # Cors headers
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
-CORS_ALLOW_CREDENTIALS = True
+
+# Csrf
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 
 # SimpleJWT
